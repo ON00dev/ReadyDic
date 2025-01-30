@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadyDic - Gerador de Estrutura de Projetos</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
+
+        body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f4f4f4;
+        }
+
+        header {
+        background-color: #2c3e50;
+        color: #fff;
+        padding: 1rem 0;
+        }
+
+        nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        }
+
+        .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        }
+
+        nav ul {
+        display: flex;
+        list-style: none;
+        }
+
+        nav ul li {
+        margin-left: 2rem;
+        }
+
+        nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+        color: #3498db;
+        }
+
+        main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        }
+
+        #hero {
+        text-align: center;
+        margin-bottom: 3rem;
+        }
+
+        #hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        }
+
+        #project-form {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+        }
+
+        #generate-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        }
+
+        input,
+        select,
+        button {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        }
+
+        button {
+        background-color: #3498db;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+        background-color: #2980b9;
+        }
+
+        #message {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 3px;
+        }
+
+        #message.success {
+        background-color: #2ecc71;
+        color: #fff;
+        }
+
+        #message.error {
+        background-color: #e74c3c;
+        color: #fff;
+        }
+
+        #project-types {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 2rem;
+        }
+
+        .project-type {
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        }
+
+        .project-type:hover {
+        transform: scale(1.1);
+        }
+
+        .project-type img {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 0.5rem;
+        }
+
+        footer {
+        background-color: #2c3e50;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">ReadyDic</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Recursos</a></li>
+                <li><a href="#docs">Documentação</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Gere Estruturas de Projetos com Facilidade</h1>
+            <p>Crie estruturas de diretórios para vários tipos de projetos em segundos</p>
+        </section>
+
+        <section id="project-form">
+            <form id="generate-form">
+                <input type="text" id="project-name" placeholder="Nome do Projeto" required>
+                <input type="text" id="project-path" placeholder="Caminho do Projeto" required>
+                <select id="project-type" required>
+                    <option value="mobile">Mobile</option>
+                    <option value="web">Web</option>
+                    <option value="games">Games</option>
+                    <option value="ia">IA</option>
+                    <option value="desktop">Desktop</option>
+                </select>
+                <button type="submit">Gerar Projeto</button>
+            </form>
+            <div id="message"></div>
+        </section>
+
+        <section id="project-types">
+            <div class="project-type" data-type="mobile">
+                <img src="styles/img/mobile.png" alt="Mobile">
+                <span>Mobile</span>
+            </div>
+            <div class="project-type" data-type="web">
+                <img src="styles/img/web.png" alt="Web">
+                <span>Web</span>
+            </div>
+            <div class="project-type" data-type="games">
+                <img src="styles/img/game.png" alt="Games">
+                <span>Games</span>
+            </div>
+            <div class="project-type" data-type="ia">
+                <img src="styles/img/ai.png" alt="IA">
+                <span>IA</span>
+            </div>
+            <div class="project-type" data-type="desktop">
+                <img src="styles/img/desktop.png" alt="Desktop">
+                <span>Desktop</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 ReadyDic. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("generate-form")
+        const messageDiv = document.getElementById("message")
+        const projectTypes = document.querySelectorAll(".project-type")
+    
+        form.addEventListener("submit", async (e) => {
+        e.preventDefault()
+    
+        const projectName = document.getElementById("project-name").value
+        const projectPath = document.getElementById("project-path").value
+        const projectType = document.getElementById("project-type").value
+    
+        try {
+            const response = await fetch("http://127.0.0.1:5556/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+                project_name: projectName,
+                project_path: projectPath,
+                project_type: projectType,
+            }),
+            })
+    
+            const result = await response.text()
+            messageDiv.textContent = result
+            messageDiv.className = result.includes("sucesso") ? "success" : "error"
+        } catch (error) {
+            messageDiv.textContent = "Erro ao conectar com o servidor. Por favor, tente novamente."
+            messageDiv.className = "error"
+        }
+        })
+    
+        projectTypes.forEach((type) => {
+        type.addEventListener("click", () => {
+            const typeValue = type.getAttribute("data-type")
+            document.getElementById("project-type").value = typeValue
+        })
+        })
+    })
+    </script>
+</body>
+</html>
+
