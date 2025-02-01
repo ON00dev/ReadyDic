@@ -48,10 +48,10 @@ def index():
 
 def start_ui():
     # Abre a interface no navegador automaticamente
-    webbrowser.open("http://127.0.0.1:5556")
+    webbrowser.open("http://127.0.0.1:5000")
 
     # Inicia o servidor Flask
-    app.run(debug=True, host='127.0.0.1', port=5556, use_reloader=False)
+    app.run(debug=True, host='127.0.0.1', port=5000, use_reloader=False)
 
 if __name__ == "__main__":
     # Cria uma thread para rodar o Flask
@@ -64,4 +64,4 @@ if __name__ == "__main__":
     time.sleep(1)
     
     # Garantir que o navegador seja aberto após o servidor iniciar
-    webbrowser.open("http://127.0.0.1:5556")
+    webbrowser.open("http://127.0.0.1:5000")
