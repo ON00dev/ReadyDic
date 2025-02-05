@@ -27,41 +27,46 @@
         </section>
 
         <section id="project-form">
-            <form id="generate-form">
-                <input type="text" id="project-name" placeholder="Nome do Projeto" required>
-                <input type="text" id="project-path" placeholder="Caminho do Projeto" required>
-                <select id="project-type" required>
+            <form id="generate-form" action="/" method="POST">
+                <input type="text" id="project-name" name="project_name" placeholder="Nome do Projeto" required>
+
+                <select id="project-type" name="project_type" required>
+                    <option value="">Selecione o Tipo de Projeto</option>
                     <option value="mobile">Mobile</option>
                     <option value="web">Web</option>
                     <option value="games">Games</option>
                     <option value="ia">IA</option>
                     <option value="desktop">Desktop</option>
                 </select>
+
+                <select id="sub-type" name="sub_type" style="display: none;" required></select>
+
+                <textarea id="custom-structure" name="custom_structure" placeholder="Insira as pastas personalizadas separadas por vírgula. Ex: src/, assets/, components/"></textarea>
+
                 <button type="submit">Gerar Projeto</button>
             </form>
-            <div id="message"></div>
+
+            <p id="save-location">Os arquivos serão salvos em: <strong>{{ default_path }}</strong></p>
+            <div id="preview-structure"></div>
+            <div id="message"></div>            
         </section>
 
         <section id="project-types">
             <div class="project-type" data-type="mobile">
-                <img src="styles/img/mobile.png">
-                <span>Mobile</span>
+                <img src="../static/img/android.png">
             </div>
             <div class="project-type" data-type="web">
-                <img src="styles/img/web.png">
-                <span>Web</span>
+                <img src="../static/img/web.png">
             </div>
             <div class="project-type" data-type="games">
-                <img src="styles/img/game.png">
-                <span>Games</span>
+                <img src="../static/img/game.png">
             </div>
             <div class="project-type" data-type="ia">
-                <img src="styles/img/ai.png">
-                <span>IA</span>
+                <img src="../static/img/ai.png">
             </div>
             <div class="project-type" data-type="desktop">
-                <img src="styles/img/desktop.png">
-                <span>Desktop</span>
+                <img src="../static/img/desktop.png">
+            </div>
         </section>
     </main>
 
