@@ -50,12 +50,12 @@ def create_project_structure(project_name, project_path, project_type, sub_type,
         "ia": {
             "imagem": ["Data", "Images", "Models", "Code", "Config", "Results"],
             "nlp": ["Data", "Text", "Models", "Code", "Config", "Results"],
-            "visao": ["Data", "Images", "Video", "Models", "Code", "Config", "Results"],
-            "preditiva": ["Data", "Models", "Code", "Config", "Results"]
+            "visao computacional": ["Data", "Images", "Video", "Models", "Code", "Config", "Results"],
+            "análise preditiva": ["Data", "Models", "Code", "Config", "Results"]
         },
         "web": {
-            "site": ["Public", "Src", "Assets", "Components", "Utils", "Tests"],
-            "app": ["Public", "Src", "Assets", "Components", "Controllers", "Models", "Views", "Routes", "Utils", "Tests"],
+            "site estático": ["Public", "Src", "Assets", "Components", "Utils", "Tests"],
+            "site dinâmico": ["Public", "Src", "Assets", "Components", "Controllers", "Models", "Views", "Routes", "Utils", "Tests"],
             "ecommerce": ["Public", "Src", "Assets", "Components", "Controllers", "Models", "Views", "Routes", "Utils", "Tests", "Admin", "Api"]
         }
     }
@@ -67,15 +67,18 @@ def create_project_structure(project_name, project_path, project_type, sub_type,
     if not structure:
         return {"message": "Erro: Tipo de projeto desconhecido!", "download_url": None}
     
+    # Cria as pastas padrão do tipo de projeto
     for item in structure:
         path = os.path.join(project_root, item)
         os.makedirs(path, exist_ok=True)
     
+    # Cria as pastas personalizadas, se houver
     if custom_structure:
         for item in validate_structure(custom_structure):
             path = os.path.join(project_root, item)
             os.makedirs(path, exist_ok=True)
     
+    # Cria o arquivo ZIP com todas as pastas (padrão e personalizadas)
     with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, dirs, files in os.walk(project_root):
             for dir_name in dirs:

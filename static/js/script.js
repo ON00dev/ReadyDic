@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const subTypeOptions = {
         "mobile": ["Java", "Kotlin"],
-        "ia": ["Processamento de Imagens", "Processamento de Linguagem Natural", "Visão Computacional", "Análises Preditivas"],
-        "web": ["Site Estático", "Aplicação Web", "E-commerce"]
+        "ia": ["imagem", "nlp", "visão computacional", "análise preditiva"], // Corrigido para "análise preditiva"
+        "web": ["site estático", "site dinâmico", "ecommerce"]
     };
 
     projectType.addEventListener("change", function () {
@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
         
         if (subTypeOptions[selectedType]) {
             subType.style.display = "block";
-            subType.innerHTML = `<option value="">Selecione o Sub Tipo</option>`;
+            subType.innerHTML = `<option value="">Selecione o Subtipo</option>`;
             subTypeOptions[selectedType].forEach(option => {
                 const opt = document.createElement("option");
-                opt.value = option.toLowerCase().replace(/\s/g, "-");
+                opt.value = option.toLowerCase(); // Removido replace(/\s/g, "-")
                 opt.textContent = option;
                 subType.appendChild(opt);
             });
@@ -66,8 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function validateStructure(input) {
-        const validPattern = /^[a-zA-Z0-9_/,-\\s]+$/;
-        return validPattern.test(input);
+        const folders = input.split(",").map(folder => folder.trim());
+        const validPattern = /^[a-zA-Z0-9_/ -]+$/;
+        return folders.every(folder => validPattern.test(folder));
     }
 
     function previewStructure(input) {
